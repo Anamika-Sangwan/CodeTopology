@@ -62,11 +62,7 @@ public class BSTImpl implements BST{
     }
 	
 	
-	public void bfs() {
-		
-	}
-	
-	
+	// For Deleting 
 	public void delete(int val) {
 		 root = deleteRec(root, val);
 	}
@@ -105,4 +101,9 @@ public class BSTImpl implements BST{
 	    }
 	    return node;
 	}
+	
+	public void bfs() {
+		
+	}
+	
 }
