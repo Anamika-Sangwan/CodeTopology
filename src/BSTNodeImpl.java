@@ -7,6 +7,7 @@ public class BSTNodeImpl implements BSTNode {
     }
 
     public int getVal() { return val; }
+    public void setVal(int val) {this.val = val; }
     public BSTNode getLeft() { return left; }
     public BSTNode getRight() { return right; }
     public void setLeft(BSTNode left) { this.left = left; }

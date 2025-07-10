@@ -19,5 +19,12 @@ public class Main {
 		System.out.println("Inorder Traversal after deleting 7:- ");
 		myTree.inorder();
 		
+		myTree.delete(0);
+		System.out.println("Inorder Traversal after deleting 0:- ");
+		myTree.inorder();
+		
+		System.out.println("Breadth First Search Traversal or Level Order Traversal:- ");
+		myTree.bfs();
+		
 	}
 }

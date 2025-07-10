@@ -67,43 +67,37 @@ public class BSTImpl implements BST{
 		 root = deleteRec(root, val);
 	}
 	public BSTNode deleteRec(BSTNode node,int val) {
-		if (node == null) return null;
-
-	    if (val < node.getVal()) {
-	        node.setLeft(deleteRec(node.getLeft(), val));
-	    } else if (val > node.getVal()) {
-	        node.setRight(deleteRec(node.getRight(), val));
-	    } else {
-	        // Case 1: No child
-	        if (node.getLeft() == null && node.getRight() == null) {
-	            return null;
-	        }
-	        // Case 2: One child
-	        else if (node.getLeft() == null) {
-	            return node.getRight();
-	        } else if (node.getRight() == null) {
-	            return node.getLeft();
-	        }
-	        // Case 3: Two children
-	        else {
-	            BSTNode successor = findMin(node.getRight());
-	            node = new BSTNodeImpl(successor.getVal());  // Replace value
-	            node.setLeft(deleteRec(root.getLeft(), successor.getVal())); // Reattach left
-	            node.setRight(deleteRec(root.getRight(), successor.getVal())); // Remove successor
-	        }
-	    }
+		if(node == null)return null;
+		
+		if(val < node.getVal()) {
+			node.setLeft(deleteRec(node.getLeft(),val));
+		}else if(val > node.getVal()){
+			node.setRight(deleteRec(node.getRight(),val));
+		}else {
+			if(node.getLeft() == null)return node.getRight();
+			else if(node.getRight() == null)return node.getLeft();
+			BSTNode min = FindMin(node);
+			node.setVal(min.getVal());
+			node.setRight(deleteRec(node.getRight(), min.getVal()));
+		}
 		return node;
 	}
 	
-	private BSTNode findMin(BSTNode node) {
-	    while (node.getLeft() != null) {
-	        node = node.getLeft();
-	    }
-	    return node;
+	public BSTNode FindMin(BSTNode node) {
+		while(node.getLeft() != null)node = node.getLeft();
+		return node;
 	}
 	
 	public void bfs() {
-		
+		bfsRec(root,0);	
+		return;
+	}
+	
+	public void bfsRec(BSTNode node, int Level) {
+		if(node == null)return;
+		System.out.print(node.getVal() + " ");
+		bfsRec(node.getLeft(),Level+1);
+		bfsRec(node.getRight(),Level+1);
 	}
 	
 }
