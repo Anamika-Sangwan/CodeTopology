@@ -58,6 +58,25 @@ public class Graph {
         return visited;
     }
 
+    // Breadth-First- Search Traversal starts at an arbitrary root index and
+    // explores all neighboring index before digging deeper at the level
+    static Set<String> BFS(Graph graph, String root) {
+        Set<String> visited = new HashSet<>();
+        Queue<String> queue = new LinkedList<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            String vertex = queue.poll();
+            for (Vertex v : graph.getAdjVertices(vertex)) {
+                if (!visited.contains(v.label)) {
+                    visited.add(v.label);
+                    queue.add(v.label);
+                }
+            }
+        }
+        return visited;
+    }
+
+    // This is the main method where everthing is implemented
     public static void main(String[] args) {
         Graph graph = new Graph();
         graph.AddVertex("Alice");
@@ -68,6 +87,9 @@ public class Graph {
 
         Set<String> visited = DFS(graph, "Alice");
         System.out.println("DFS traversal: " + visited);
+
+        Set<String> B_Visited = BFS(graph, "Alice");
+        System.out.println("BFS traversal: " + B_Visited);
     }
 }
 
